@@ -1,0 +1,39 @@
+services:
+  api:
+    build: .
+    ports:
+      - "10000:10000"
+    networks:
+      - main_network
+    depends_on:
+      - main_db
+      - redis_main
+    environment:
+      - DATABASE_URL=postgresql://user:password@main_db:5432/mydb?schema=public
+      - REDIS_HOST=redis_main
+      - REDIS_PORT=6379
+      - SERVER_PORT=10000
+      - JWT_SECRET=supersecret
+      - COOKIE_SECRET=anothersecret
+
+  main_db:
+    image: postgres:15-alpine
+    networks:
+      - main_network
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    volumes:
+      - main_db_data:/var/lib/postgresql/data
+
+  redis_main:
+    image: redis:alpine
+    networks:
+      - main_network
+
+networks:
+  main_network:
+
+volumes:
+  main_db_data:
