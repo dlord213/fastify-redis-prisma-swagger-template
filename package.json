@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server:ts": "npx tsx ./server.ts",
-    "server": "npx tsc && node dist/server.js",
+    "server:ts": "npx tsx ./src/server.ts",
+    "server": "npx tsc && node dist/src/server.js",
     "build": "npx tsc",
     "db:gen": "prisma generate",
     "db:pull": "prisma db pull",
