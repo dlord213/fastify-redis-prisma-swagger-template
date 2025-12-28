@@ -48,13 +48,12 @@ npm run server:ts
 ## Scripts
 
 ```bash
-npm run server:ts - Runs the server in development mode using tsx (Hot reload).
-npm run build - Compiles TypeScript to JavaScript in /dist.
-npm run server - Runs the compiled JavaScript (Production mode).
-npm run db:gen - Generates Prisma Client (Run after schema changes).
-npm run db:push - Pushes schema changes to DB without creating migration history (Prototyping).
-npm run db:migrate - Creates and runs a migration file (Production).
-npm run db:studio - Opens Prisma Studio GUI to view data.
+npm run server:ts - Runs the server in development mode using tsx
+npm run build - Compiles TypeScript to JavaScript in /dist
+npm run server - Runs the compiled JavaScript
+npm run db:gen - Generates Prisma Client
+npm run db:push - Pushes schema changes to DB without creating migration history
+npm run db:migrate - Creates and runs a migration file
 ```
 
 ## API Documentation (Swagger)
