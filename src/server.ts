@@ -4,6 +4,7 @@ import { requestsPlugin } from "./plugins/requests.plugin.js";
 import { securityPlugin } from "./plugins/security.plugin.js";
 import { authPlugin } from "./plugins/auth.plugin.js";
 import { redisPlugin } from "./plugins/redis.plugin.js";
+import { swaggerPlugin } from "./plugins/swagger.plugin.js";
 
 const server = fastify({
   logger: true,
@@ -16,10 +17,39 @@ const start = async () => {
     await server.register(redisPlugin);
     await server.register(requestsPlugin);
     await server.register(securityPlugin);
+    await server.register(swaggerPlugin);
 
     server.get("/ping", async (request, reply) => {
       return "pong\n";
     });
+
+    server.get(
+      "/users",
+      {
+        schema: {
+          description: "Get all users",
+          tags: ["Users"],
+          summary: "Fetch public user list",
+          response: {
+            200: {
+              description: "Successful response",
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  id: { type: "integer" },
+                  email: { type: "string" },
+                },
+              },
+            },
+          },
+        },
+      },
+      async (req, reply) => {
+        // Logic here
+        return [{ id: 1, email: "test@test.com" }];
+      }
+    );
 
     server.get("/redis-check", async (request, reply) => {
       const { redis } = server;
