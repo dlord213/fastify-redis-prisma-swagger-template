@@ -27,14 +27,14 @@ services:
     volumes:
       - main_db_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   redis_main:
     image: redis:alpine
     networks:
       - main_network
     ports:
-      - "6379:6379"
+      - "6380:6379"
 
 networks:
   main_network:
